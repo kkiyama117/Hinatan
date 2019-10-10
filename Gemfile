@@ -56,6 +56,9 @@ gem 'redis', '~> 4.0'
 gem 'redis-rails'
 
 # OTHERS =======================================================================
+# Calculate Units
+gem 'ruby-units'
+
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -71,6 +74,7 @@ gem 'image_processing', '~> 1.4'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# DEV ==========================================================================
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console
