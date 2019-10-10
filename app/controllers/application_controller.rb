@@ -4,8 +4,13 @@
 class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
 
+  # For pundit()
   include Pundit
-  protect_from_forgery
+  # Add `mobile?` function
+  include MobileCheck
+  # CSRF
+  protect_from_forgery with: :exception
+
 
   def current_user
     UserDecorator.decorate(super) if super.present?
