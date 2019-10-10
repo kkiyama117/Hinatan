@@ -82,3 +82,5 @@ yarn-debug.log*
 
 # editor
 .idea/
+
+/config/master.key

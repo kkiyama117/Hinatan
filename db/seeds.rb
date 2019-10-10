@@ -10,13 +10,16 @@
 Role.create(
         name: 'ADMIN'
 )
-r = Role.create(
+master_role=Role.create(
+    name: 'MASTER'
+)
+Role.create(
     name: 'NORMAL'
 )
 User.create(
-    email: 'k.kiyama117@gmail.com',
-    password: '19980117',
-    first_name: 'Kiyama',
-    last_name: 'Kouhei',
-    roles: [r]
+    email: '61st.kitchen@gmail.com',
+    password: Rails.application.credentials.appmaster[:password],
+    first_name: 'Kitchen',
+    last_name: 'Master',
+    roles: [master_role]
 )
