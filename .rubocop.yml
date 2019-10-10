@@ -1,0 +1,25 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - "node_modules/**/*"
+    - "vendor/**/*" # rubocop config/default.yml
+    - "db/schema.rb"
+    - "db/migrate/*"
+    - "bin/*"
+
+# Allow comment written by Japanese
+AsciiComments:
+  Enabled: false
+
+# Allow Module::Class
+ClassAndModuleChildren:
+  Enabled: false
+
+# Line Length
+Metrics/LineLength:
+  AutoCorrect: true
+
+# fix `def` `end`
+Layout/DefEndAlignment:
+  AutoCorrect: true
