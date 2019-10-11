@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <title>RailsTemplate</title>
+    <title>R</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,9 +13,27 @@
 
   <body>
   <%= render 'layouts/header' %>
-  <h1>Pumpkin</h1>
-  <%= yield %>
+  <%= render 'layouts/menu_bar' %>
+  <section class="section">
+    <div class="container">
+      <!-- ここにコンテンツを記載 -->
+      <%= yield %>
+    </div>
+  </section>
+  <%= render 'layouts/footer' %>
   </body>
   <%# 仮置き %>
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/prism/9000.0.1/prism.js'></script>
+  <script>
+      window.addEventListener('resize', () => {
+          const divs = document.querySelectorAll(".menu-list");
+          if (window.innerWidth < 768){
+              divs.forEach(div => div.classList.add("tags"));
+          }
+          else {
+              divs.forEach(div => div.classList.remove("tags"));
+          }
+      });
+  </script>
 </html>
