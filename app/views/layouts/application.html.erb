@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
+    <%#  If you use Vue.js, I reccomend to remove turbolinks %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -14,4 +16,6 @@
   <h1>Pumpkin</h1>
   <%= yield %>
   </body>
+  <%# 仮置き %>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </html>

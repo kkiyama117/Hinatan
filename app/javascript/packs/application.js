@@ -4,9 +4,12 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
+// If you use Vue.js, I reccomend to remove turbolinks
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+// View CSS module
+require("bulma/bulma")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

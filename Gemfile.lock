@@ -485,6 +485,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   ruby-units
+  sassc-rails
   selenium-webdriver
   sitemap_generator
   spring
