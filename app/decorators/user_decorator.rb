@@ -20,4 +20,7 @@ class UserDecorator < Draper::Decorator
           end
     t(str, provider: OmniAuth::Utils.camelize(provider))
   end
+  def omniauths
+
+  end
 end
