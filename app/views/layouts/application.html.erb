@@ -30,6 +30,7 @@
 </body>
 
 <%# 仮置き %>
+<%# TODO(kkiyama117): move to js file %>
 <%# font %>
 <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 <script>
@@ -40,6 +41,14 @@
         } else {
             divs.forEach(div => div.classList.remove("tags"));
         }
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            $notification = $delete.parentNode;
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
     });
 </script>
 </html>

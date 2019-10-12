@@ -7,13 +7,17 @@
   </li>
   <li class="is-right">
     <%= link_to user_root_path, class: 'is-active' do %>
-      <i class="fas fa-user"></i> USER
+      <i class="fas fa-user"></i> <%= current_user_or_model_name %>
     <% end %>
   </li>
   <li>
     <%= sign_in_or_out_tag class: 'is-active' do %>
-      <i class="fab fa-js"></i> <%= sign_tag_string %>
+      <i class="<%= sign_in_or_out_icon_string %>"></i> <%= sign_in_or_out_tag_string %>
     <% end %>
   </li>
-  <li><a href="#let" class="is-active"><i class="fab fa-html5"></i> HTML</a></li>
+  <li>
+    <%= link_to admin_root_path, class: 'is-active' do %>
+      <i class="fas fa-home"></i> ADMIN
+    <% end %>
+  </li>
 </ul>
