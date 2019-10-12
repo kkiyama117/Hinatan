@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class IngredientDecorator < ApplicationDecorator
   delegate_all
 
@@ -11,4 +9,5 @@ class IngredientDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+
 end

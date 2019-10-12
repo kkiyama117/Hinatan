@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'ingredients/new'
+  get 'ingredients/edit'
   namespace :admin do
     resources :users
     resources :user_roles
