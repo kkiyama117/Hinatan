@@ -47,6 +47,7 @@ gem 'fast_jsonapi'
 # SEO
 # rails g meta_tags:install
 gem 'meta-tags'
+# rails sitemap:install
 gem 'sitemap_generator'
 
 # DB ===========================================================================
