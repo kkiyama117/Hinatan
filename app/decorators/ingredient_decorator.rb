@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Decorate ingredients
 class IngredientDecorator < ApplicationDecorator
   delegate_all
 
@@ -9,5 +12,7 @@ class IngredientDecorator < ApplicationDecorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
+  def price
+    object.price + '円'
+  end
 end
