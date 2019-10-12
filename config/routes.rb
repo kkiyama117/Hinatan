@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'ingredients/new'
-  get 'ingredients/edit'
   namespace :admin do
     resources :users
     resources :user_roles
@@ -25,4 +23,7 @@ Rails.application.routes.draw do
   # user root
   get 'users', action: :show, controller: :users, as: :user_root
   root 'welcome#index'
+
+  # about recipes
+  resource :ingredients
 end
