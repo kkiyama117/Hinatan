@@ -12,15 +12,5 @@ class UserDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-  def omniauth_tag_string(sign_in:)
-    str = if sign_in
-            'devise.shared.links.link_to_provider'
-          else
-            'devise.shared.links.sign_in_with_provider'
-          end
-    t(str, provider: OmniAuth::Utils.camelize(provider))
-  end
-  def omniauths
-
-  end
+  #
 end

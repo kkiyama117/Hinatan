@@ -11,14 +11,8 @@
     <% end %>
   </li>
   <li>
-    <% if user_signed_in? %>
-      <%= link_to destroy_session_path(User), method: :delete, class: 'is-active' do %>
-        <i class="fab fa-js"></i> <%= I18n.t('devise.shared.links.sign_out') %>
-      <% end %>
-    <% else %>
-      <%= link_to new_session_path(User), class: 'is-active' do %>
-        <i class="fab fa-js"></i> <%= I18n.t('devise.shared.links.sign_in') %>
-      <% end %>
+    <%= sign_in_or_out_tag class: 'is-active' do %>
+      <i class="fab fa-js"></i> <%= sign_tag_string %>
     <% end %>
   </li>
   <li><a href="#let" class="is-active"><i class="fab fa-html5"></i> HTML</a></li>

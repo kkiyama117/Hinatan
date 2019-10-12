@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   # CSRF
   protect_from_forgery with: :exception
 
-
   def current_user
     UserDecorator.decorate(super) if super.present?
   end
