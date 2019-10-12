@@ -1,5 +1,25 @@
 <ul class="menu-list">
-  <li class="is-right"><a href="#const" class="is-active"><i class="fab fa-css3-alt"></i> CSS</a></li>
-  <li><a href="#let" class="is-active"><i class="fab fa-js"></i> JS</a></li>
+
+  <li class="is-right">
+    <%= link_to root_path, class: 'is-active' do %>
+      <i class="fas fa-home"></i> HOME
+    <% end %>
+  </li>
+  <li class="is-right">
+    <%= link_to user_root_path, class: 'is-active' do %>
+      <i class="fas fa-user"></i> USER
+    <% end %>
+  </li>
+  <li>
+    <% if user_signed_in? %>
+      <%= link_to destroy_session_path(User), method: :delete, class: 'is-active' do %>
+        <i class="fab fa-js"></i> <%= I18n.t('devise.shared.links.sign_out') %>
+      <% end %>
+    <% else %>
+      <%= link_to new_session_path(User), class: 'is-active' do %>
+        <i class="fab fa-js"></i> <%= I18n.t('devise.shared.links.sign_in') %>
+      <% end %>
+    <% end %>
+  </li>
   <li><a href="#let" class="is-active"><i class="fab fa-html5"></i> HTML</a></li>
 </ul>

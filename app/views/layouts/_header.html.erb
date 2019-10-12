@@ -1,59 +1,26 @@
-<%= render 'layouts/header_top' %>
-<section class="section">
-  <div class="container">
+<section class="hero is-primary">
+  <% if notice %>
+    <p class="alert alert-notice"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-error"><%= alert %></p>
+  <% end %>
+  <div class="hero-body">
     <div class="columns">
-      <div class="column is-3">
-        <aside class="is-medium menu">
-          <p class="menu-label">
-            categories
-          </p>
-          <%= render 'layouts/side_menu/category' %>
-          <p class="menu-label">
-            More to read...
-          </p>
-          <%= render 'layouts/side_menu/more_read' %>
-        </aside>
-      </div>
-      <div class="column is-9">
-        <div class="content is-medium">
-          <h3 class="title is-3">Snippets ¯\_(ツ)_/¯</h3>
-          <div class="box">
-            <h4 id="const" class="title is-3">const</h4>
-            <article class="message is-primary">
-                  <span class="icon has-text-primary">
-                  <i class="fab fa-js"></i>
-                  </span>
-              <div class="message-body">
-                Block-scoped. Cannot be re-assigned. Not immutable.
-              </div>
-            </article>
-            <pre><code class="language-javascript">const test = 'test';</code></pre>
-          </div>
-          <div class="box">
-            <h4 id="let" class="title is-3">let</h4>
-            <article class="message is-primary">
-                <span class="icon has-text-primary">
-                  <i class="fas fa-info-circle"></i>
+      <div class="column is-12">
+        <div class="container content">
+          <i class="is-large fab fa-discord"></i>
+          <i class="is-large fas fa-code"></i>
+          <h1 class="title">61st <em>R</em> youri kyoku</h1>
+          <h2 class="subtitle">
+            料理作らないかい?
+          </h2>
+          <a href="https://github.com/kkiyama117/R" target="_blank" class="button is-primary is-large">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
                 </span>
-              <div class="message-body">
-                Block-scoped. Can be re-assigned.
-              </div>
-            </article>
-            <pre><code class="language-javascript">let i = 0;</code></pre>
-          </div>
-          <h3 class="title is-3">More to Come...</h3>
-          <div class="box">
-            <h4 id="lorem" class="title is-4">More to come...</h4>
-            <article class="message is-primary">
-              <span class="icon has-text-primary">
-                <i class="fas fa-info-circle"></i>
-              </span>
-              <div class="message-body">
-                Lorem ipsum dolor sit amet, mea ne viderer veritus menandri, id scaevola gloriatur instructior sit.
-              </div>
-            </article>
-            <pre><code class="language-javascript">let i = 0;</code></pre>
-          </div>
+            <span>Github</span>
+          </a>
         </div>
       </div>
     </div>

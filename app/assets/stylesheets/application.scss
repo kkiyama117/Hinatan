@@ -13,9 +13,7 @@
  *= require_self
  */
 /**= require_tree .*/
-@import "~normalize.css/normalize.css";
 @import 'bulma';
-@import "prism";
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
