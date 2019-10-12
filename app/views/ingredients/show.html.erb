@@ -1,28 +1,2 @@
 <h1>Ingredients#show</h1>
-<table>
-  <thead>
-  <tr>
-    <th>Item</th>
-    <th>name</th>
-    <th>price</th>
-    <th>unit</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @ingredients.each do |ingredient| %>
-    <tr>
-      <td><%= ingredient.item %></td>
-      <td><%= ingredient.name %></td>
-      <td><%= ingredient.price %></td>
-      <td><%= Ingredient.unit %></td>
-      <td><%= link_to 'Show', ingredient %></td>
-      <td><%= link_to 'Edit', edit_ingredients_path(ingredient) %></td>
-      <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'New Recipe Ingredient', new_ingredients_path %>
+<p>Find me in app/views/ingredients/new.html.erb</p>

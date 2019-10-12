@@ -4,11 +4,23 @@
 class IngredientsController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-    @ingredients = IngredientDecorator.decorate(Ingredient.all)
+  def index
+    @ingredients = IngredientDecorator.decorate(Ingredient.page(params[:page]))
   end
 
-  def new; end
+  def show
+    @ingredient = IngredientDecorator.decorate(Ingredient.find(params[:id]))
+  end
 
-  def edit; end
+  def new;
+  end
+
+  def edit;
+  end
+
+  def destroy
+    @ingredient ||= Ingredient.find(params[:id])
+    @ingredient.destroy
+    redirect_to ingredients_path
+  end
 end

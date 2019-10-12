@@ -40,14 +40,14 @@ ActiveRecord::Schema.define(version: 2019_10_10_130053) do
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer "recipes_id", null: false
-    t.integer "ingredients_id", null: false
+    t.integer "recipe_id", null: false
+    t.integer "ingredient_id", null: false
     t.integer "amount", default: 0, null: false
     t.text "remark"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["ingredients_id"], name: "index_recipe_ingredients_on_ingredients_id"
-    t.index ["recipes_id"], name: "index_recipe_ingredients_on_recipes_id"
+    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
+    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 2019_10_10_130053) do
   end
 
   add_foreign_key "o_auths", "users"
-  add_foreign_key "recipe_ingredients", "ingredients", column: "ingredients_id"
-  add_foreign_key "recipe_ingredients", "recipes", column: "recipes_id"
+  add_foreign_key "recipe_ingredients", "ingredients"
+  add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end
