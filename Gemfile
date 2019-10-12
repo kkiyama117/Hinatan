@@ -15,6 +15,8 @@ gem 'puma', '~> 3.11'
 # MODEL ========================================================================
 # User auth
 # rails g devise:install
+# also you can edit responder
+# rails g responders:install
 gem 'devise', '>= 4.6.0'
 # create config/initializers/omniauth.rb
 gem 'omniauth'
@@ -43,6 +45,7 @@ gem 'kaminari'
 gem 'fast_jsonapi'
 
 # SEO
+# rails g meta_tags:install
 gem 'meta-tags'
 gem 'sitemap_generator'
 
