@@ -115,6 +115,8 @@ group :development, :test do
 end
 
 group :development do
+  # run webpack and rails at the same time
+  gem 'foreman'
   # browse email
   gem 'letter_opener'
   # rubocop
