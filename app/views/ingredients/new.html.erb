@@ -1,2 +1,10 @@
 <h1>Ingredients#new</h1>
-<p>Find me in app/views/ingredients/new.html.erb</p>
+<div>
+
+  <%= form_with model: @ingredient do |form| %>
+    <%= form_field_with(form, :name, :text_field, ) %>
+    <%= form_field_with(form, :price, :text_field, help_text: 'price per one unit') %>
+    <%= form_field_with(form, :unit, :text_field, help_text: '単位') %>
+    <%= form.submit %>
+  <% end %>
+</div>

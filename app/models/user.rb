@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# User Base Model
 class User < ApplicationRecord
   include User::DeviseAndAuth
 

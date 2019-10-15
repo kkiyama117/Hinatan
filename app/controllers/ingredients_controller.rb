@@ -12,15 +12,32 @@ class IngredientsController < ApplicationController
     @ingredient = IngredientDecorator.decorate(Ingredient.find(params[:id]))
   end
 
-  def new;
+  def new
+    @ingredient = Ingredient.new
   end
 
-  def edit;
+  def create
+    @ingredient = Ingredient.new(post_params)
+    if @ingredient.save
+      respond_with @ingredient, location: -> { ingredients_path }
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @ingredient ||= Ingredient.find(params[:id])
   end
 
   def destroy
     @ingredient ||= Ingredient.find(params[:id])
     @ingredient.destroy
     redirect_to ingredients_path
+  end
+
+  private
+
+  def post_params
+    params.require(:ingredient).permit(:name, :price, :unit)
   end
 end

@@ -1,26 +1,30 @@
 # frozen_string_literal: true
 
-# app/models/form/product_collection.rb
+# Form for Recipe and Ingredient
 class Form::RecipeForm < Form::Base
+  def initialize(attributes = {})
+    super attributes
+    self.recipe = recipe
+    self.ingredients = ingredients
+  end
+
   concerning :RecipeBuilder do
     attr_accessor :recipes
 
-    def initialize(attributes = {})
-      super attributes
-      self.recipe = recipe
-      self.ingredients = ingredients
-    end
-
     def recipe
       @recipe ||= Recipe.new
+    end
+
+    def recipe_attributes=(attributes)
+      @recipe_attributes = Recipe.new attributes
     end
   end
 
   concerning :IngredientBuilder do
     attr_reader :ingredients
 
-    def ingredients
-      @ingredients ||= Ingredient.new
+    def ingredient
+      @ingredient ||= Ingredient.new
     end
 
     def ingredients_attributes=(attributes)
@@ -28,10 +32,9 @@ class Form::RecipeForm < Form::Base
     end
   end
 
-
-  def products_attributes=(attributes)
-    self.products = attributes.map do |_, product_attributes|
-      Form::Product.new(product_attributes).tap { |v| v.availability = false }
+  concerning :RecipeIngredientBuilder do
+    def recipe_ingredient
+      @recipe_ingredient ||= RecipeIngredient.new
     end
   end
 
