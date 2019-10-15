@@ -24,6 +24,6 @@ production:
   adapter: postgresql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= Rails.application.credentials.captistrano.production.db.host %>
+  host: <%= Rails.application.credentials.captistrano.production.db[:host]%>
   username: postgres
-  password: <%= Rails.application.credentials.captistrano.production.db.password %>
+  password: <%= Rails.application.credentials.captistrano.production.db[:password]%>
