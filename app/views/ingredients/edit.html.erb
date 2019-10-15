@@ -1,2 +1,5 @@
-<h1>Ingredients#edit</h1>
-<p>Find me in app/views/ingredients/edit.html.erb</p>
+<% provide(:title, 'Edit Ingredients') %>
+<% provide(:box_title, @ingredient.name) %>
+<% provide(:renderer, 'ingredients/edit_form') %>
+
+<%= render 'layouts/components/box_base' %>

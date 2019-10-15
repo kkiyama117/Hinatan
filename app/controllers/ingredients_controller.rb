@@ -29,6 +29,15 @@ class IngredientsController < ApplicationController
     @ingredient ||= Ingredient.find(params[:id])
   end
 
+  def update
+    @ingredient ||= Ingredient.find(params[:id])
+    if @ingredient.update(post_params)
+      respond_with @ingredient, location: -> { ingredients_path }
+    else
+      render :new
+    end
+  end
+
   def destroy
     @ingredient ||= Ingredient.find(params[:id])
     @ingredient.destroy
