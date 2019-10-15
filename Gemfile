@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.6.5'
 
 # BASE =========================================================================
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -66,6 +66,8 @@ gem 'ruby-units'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
+gem 'capistrano-rbenv', group: :development
+gem 'capistrano3-puma', group: :development
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 
