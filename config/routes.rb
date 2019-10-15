@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :o_auths
     resources :abilities
     resources :roles
+    resources :recipes
+    resources :recipe_ingredients
+    resources :ingredients
 
     root to: 'users#index'
   end
@@ -23,4 +26,7 @@ Rails.application.routes.draw do
   # user root
   get 'users', action: :show, controller: :users, as: :user_root
   root 'welcome#index'
+
+  # about recipes
+  resources :ingredients
 end

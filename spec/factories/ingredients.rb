@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :ingredient do
-    name { "MyString" }
+    name { 'MyString' }
     price { 1 }
-    unit { "MyString" }
-    amount { "MyString" }
-    string { "MyString" }
+    unit { 'MyString' }
+    amount { 'MyString' }
+    string { 'MyString' }
   end
 end

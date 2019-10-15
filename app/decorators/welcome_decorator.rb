@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# decorate index
+#
+# We may not use this
 class WelcomeDecorator < ApplicationDecorator
   delegate_all
 

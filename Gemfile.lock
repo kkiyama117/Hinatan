@@ -89,6 +89,8 @@ GEM
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     builder (3.2.3)
+    bulma-rails (0.7.5)
+      sassc (~> 2.0)
     byebug (11.0.1)
     capistrano (3.11.2)
       airbrussh (>= 1.0.0)
@@ -150,6 +152,7 @@ GEM
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     ffi (1.11.1)
+    foreman (0.86.0)
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -449,6 +452,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap (>= 1.4.4)
+  bulma-rails (~> 0.7.5)
   byebug
   capistrano-rails
   capybara (>= 2.15)
@@ -458,6 +462,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fast_jsonapi
+  foreman
   guard (>= 2.2.2)
   guard-livereload
   guard-rspec
@@ -485,6 +490,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   ruby-units
+  sassc-rails
   selenium-webdriver
   sitemap_generator
   spring

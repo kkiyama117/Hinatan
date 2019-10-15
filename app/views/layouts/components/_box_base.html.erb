@@ -1,0 +1,12 @@
+<h3 class="title is-3"><%= yield :title %></h3>
+<div class="box">
+  <h4 id="const" class="title is-3"><%=yield :box_title %></h4>
+  <article class="message is-primary">
+                  <span class="icon has-text-primary">
+                    <i class="fas fa-seedling"></i>
+                  </span>
+    <div class="message-body">
+      <%= render yield(:renderer) %>
+    </div>
+  </article>
+</div>

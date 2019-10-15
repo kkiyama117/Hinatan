@@ -1,17 +1,55 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <title>RailsTemplate</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>R</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%#  If you use Vue.js, I reccomend to remove turbolinks %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'app_vue' %>
+</head>
 
-  <body>
-  <%= render 'layouts/header' %>
-  <h1>Pumpkin</h1>
-  <%= yield %>
-  </body>
+<body>
+<%# Header %>
+<%= render 'layouts/header' %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <%= render 'layouts/side_menu' %>
+      <div class="column is-9">
+        <div class="content is-medium">
+          <%# ここにコンテンツを記載 %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render 'layouts/footer' %>
+</body>
+
+<%# 仮置き %>
+<%# TODO(kkiyama117): move to js file %>
+<%# font %>
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+<script>
+    window.addEventListener('resize', () => {
+        const divs = document.querySelectorAll(".menu-list");
+        if (window.innerWidth < 768) {
+            divs.forEach(div => div.classList.add("tags"));
+        } else {
+            divs.forEach(div => div.classList.remove("tags"));
+        }
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            $notification = $delete.parentNode;
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
+    });
+</script>
 </html>

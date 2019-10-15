@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+/**= require_tree .*/
+@import 'bulma';
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body,
+html {
+  background: #f2f2f2;
+}
+
+pre, .message {
+  max-width: 960px;
+}
+
+li {
+  margin: 10px
+}
+
+.hero.is-primary {
+  background: linear-gradient(to top right, #524ad0 10%, #D099FA);
+}
+
+.box {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.box span.icon {
+  float: right;
+  font-size: 1.7em;
+  padding: 2rem 2rem 0 0;
+}
+
+.is-large.fab {
+  font-size: 7em;
+}
+
+.is-large.fas {
+  font-size: 5em;
+  margin-left: 0.2em;
+}
+
+.media-content {
+  overflow: hidden;
+}
+
+.menu-list li a:hover {
+  background: #d9d9d9;
+}
+
+.token.number {
+  display: inline;
+  padding: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  vertical-align: inherit;
+  border-radius: inherit;
+  font-weight: inherit;
+  white-space: inherit;
+  background: inherit;
+  margin: inherit;
+}
+
+.footer {
+  background-color: white;
+}
