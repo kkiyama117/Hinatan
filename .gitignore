@@ -84,3 +84,4 @@ yarn-debug.log*
 .idea/
 
 /config/master.key
+config/deploy/production.rb
