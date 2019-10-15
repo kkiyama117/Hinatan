@@ -1,0 +1,23 @@
+<ul class="menu-list">
+
+  <li class="is-right">
+    <%= link_to root_path, class: 'is-active' do %>
+      <i class="fas fa-home"></i> HOME
+    <% end %>
+  </li>
+  <li class="is-right">
+    <%= link_to user_root_path, class: 'is-active' do %>
+      <i class="fas fa-user"></i> <%= current_user_or_model_name %>
+    <% end %>
+  </li>
+  <li>
+    <%= sign_in_or_out_tag class: 'is-active' do %>
+      <i class="<%= sign_in_or_out_icon_string %>"></i> <%= sign_in_or_out_tag_string %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to admin_root_path, class: 'is-active' do %>
+      <i class="fas fa-home"></i> ADMIN
+    <% end %>
+  </li>
+</ul>

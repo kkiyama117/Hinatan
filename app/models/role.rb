@@ -6,5 +6,4 @@ class Role < ApplicationRecord
                    uniqueness: { case_sensitive: false }
   has_many :user_roles, dependent: :destroy
   has_many :users, through: :user_roles
-  accepts_nested_attributes_for :user_roles
 end

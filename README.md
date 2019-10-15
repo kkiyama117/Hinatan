@@ -24,17 +24,9 @@ bin/rails db:migrate
 RAILS_ENV=test bin/rails db:migrate
 ```
 ## Run server and confirm seed account
-create two console
-and run each commands on each console
-
 ```
-# console A
-redis-server
-```
-
-```
-# console B
-rails s
+# console
+bundle exec foreman start
 ```
 
 * Database creation

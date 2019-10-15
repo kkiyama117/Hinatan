@@ -15,6 +15,8 @@ gem 'puma', '~> 3.11'
 # MODEL ========================================================================
 # User auth
 # rails g devise:install
+# also you can edit responder
+# rails g responders:install
 gem 'devise', '>= 4.6.0'
 # create config/initializers/omniauth.rb
 gem 'omniauth'
@@ -31,7 +33,8 @@ gem 'administrate'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
 # Use SCSS for stylesheets
-# gem 'sass-rails', '~> 5'
+gem 'bulma-rails', '~> 0.7.5'
+gem 'sassc-rails'
 
 # decorator (presentation layer)
 gem 'draper'
@@ -42,7 +45,9 @@ gem 'kaminari'
 gem 'fast_jsonapi'
 
 # SEO
+# rails g meta_tags:install
 gem 'meta-tags'
+# rails sitemap:install
 gem 'sitemap_generator'
 
 # DB ===========================================================================
@@ -56,6 +61,9 @@ gem 'redis', '~> 4.0'
 gem 'redis-rails'
 
 # OTHERS =======================================================================
+# Calculate Units
+gem 'ruby-units'
+
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -71,6 +79,7 @@ gem 'image_processing', '~> 1.4'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# DEV ==========================================================================
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console
@@ -106,7 +115,9 @@ group :development, :test do
 end
 
 group :development do
-  # dummy email
+  # run webpack and rails at the same time
+  gem 'foreman'
+  # browse email
   gem 'letter_opener'
   # rubocop
   gem 'rubocop'

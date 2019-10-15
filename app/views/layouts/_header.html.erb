@@ -1,24 +1,23 @@
-<header>
-  <nav>
-    <ul class="header_menu">
-      <li><%= link_to "Home", root_path %></li>
-      <li class=''><a>User menu</a>
-        <ul>
-          <% if user_signed_in? %>
-            <%= user_menu %>
-          <% else %>
-            <%= no_user_menu %>
-          <% end %>
-          <%= omniauth_tag signed_in: user_signed_in? %>
-        </ul>
-      </li>
-      <li class=''><%= link_to "Home", root_path %></li>
-    </ul>
-  </nav>
-  <% if notice %>
-    <p class="alert alert-notice"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-error"><%= alert %></p>
-  <% end %>
-</header>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="container content">
+          <i class="is-large fab fa-discord"></i>
+          <i class="is-large fas fa-code"></i>
+          <h1 class="title">61st <em>R</em> youri kyoku</h1>
+          <h2 class="subtitle">
+            料理作らないかい?
+          </h2>
+          <a href="https://github.com/kkiyama117/R" target="_blank" class="button is-primary is-large">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+            <span>Github</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render 'layouts/header/notice_and_alert' %>

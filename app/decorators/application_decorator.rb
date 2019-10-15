@@ -8,4 +8,7 @@ class ApplicationDecorator < Draper::Decorator
   #   def percent_amount
   #     h.number_to_percentage object.amount, precision: 2
   #   end
+  #
+  # If you want to create helper method not dependent on instance of model,
+  # see and edit helpers/*.rb
 end
