@@ -26,9 +26,8 @@ set :deploy_to, '/home/ec2-user/R'
 
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
-set :linked_files, fetch(:linked_files, []).push(
-  'config/database.yml', 'config/master.key', 'config/credentials.yml.enc'
-)
+linked_files = %w[config/database.yml config/master.key config/credentials.yml.enc]
+set :linked_files, fetch(:linked_files, []).concat(linked_files)
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -103,8 +102,19 @@ namespace :deploy do
     on roles(:app) do
       # 403 Forbidden対策
       execute 'chmod 701 /home/ec2-user'
+
       before 'deploy:restart', 'puma:start'
       invoke 'deploy'
+    end
+  end
+
+  desc 'Remove devise routes because of migration error'
+  task :fix_route_before_migrate do
+    on roles(:app) do
+      within "#{release_path}/config" do
+        execute :cp, 'routes.rb', 'routes.rb.tmp'
+        execute :cp, 'routes.initial.rb', 'routes.rb'
+      end
     end
   end
 
@@ -126,20 +136,31 @@ namespace :deploy do
     end
   end
 
+  desc 'Repair devise routes'
+  task :fix_route_after_migrate do
+    on roles(:app) do
+      within "#{release_path}/config" do
+        execute :cp, 'routes.rb.tmp', 'routes.rb'
+        execute :rm, 'routes.rb.tmp'
+      end
+    end
+  end
+
   before :starting, :check_revision
   before :check, 'setup:config'
+  after :check, :fix_route_before_migrate
   after :migrate, :seed
   after :finishing, :compile_assets
   after :finishing, :cleanup
+  after :db_seed, :fix_route_after_migrate
 end
 
 namespace :setup do
   desc 'setup config'
   task :config do
     on roles(:app) do |_host|
-      # rails5.2以前だとmaster.keyではなくて、secret.ymlになるはずです。
-      %w[master.key database.yml credentials.yml.enc].each do |f|
-        upload! "config/#{f}", "#{shared_path}/config/#{f}"
+      linked_files.each do |f|
+        upload! f.to_s, "#{shared_path}/#{f}"
       end
     end
   end
