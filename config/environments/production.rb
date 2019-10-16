@@ -10,7 +10,7 @@ Rails.application.configure do
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
-  config.eager_load = true
+  # config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
@@ -112,14 +112,13 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   # mailer
-  config.action_mailer.default_url_options = { host: 'hinatan.jp'}
-  config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      port: 587,
-      user_name: Rails.application.credentials.google[:gmail][:address],
-      password: Rails.application.credentials.google[:gmail][:password],
-      authentication: 'plain',
-      enable_starttls_auto: true
-  }
-
+  # config.action_mailer.default_url_options = { host: 'hinatan.jp'}
+  # config.action_mailer.smtp_settings = {
+  #     address: 'smtp.gmail.com',
+  #     port: 587,
+  #     user_name: Rails.application.credentials.google[:gmail][:address],
+  #     password: Rails.application.credentials.google[:gmail][:password],
+  #     authentication: 'plain',
+  #     enable_starttls_auto: true
+  # }
 end

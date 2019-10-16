@@ -16,12 +16,12 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # Comment out before initializing
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations',
-    passwords: 'users/passwords',
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
+  # devise_for :users, controllers: {
+  #   sessions: 'users/sessions',
+  #   registrations: 'users/registrations',
+  #   passwords: 'users/passwords',
+  #   omniauth_callbacks: 'users/omniauth_callbacks'
+  # }
 
   # user root
   get 'users', action: :show, controller: :users, as: :user_root

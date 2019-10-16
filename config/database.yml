@@ -21,9 +21,12 @@ test:
   database: db/test.sqlite3
 
 production:
+#  <<: *default
   adapter: postgresql
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= Rails.application.credentials.captistrano.production.db[:host]%>
+  host: <%= Rails.application.credentials.captistrano.production.db[:host] %>
+  database: <%= Rails.application.credentials.captistrano.production.db[:database] %>
   username: postgres
-  password: <%= Rails.application.credentials.captistrano.production.db[:password]%>
+  password: <%= Rails.application.credentials.captistrano.production.db[:password] %>
+  timeout: 5000
