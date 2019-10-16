@@ -52,7 +52,8 @@ gem 'sitemap_generator'
 
 # DB ===========================================================================
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+gem 'pg', group: :production
+gem 'sqlite3', '~> 1.4', group: %i[development test]
 
 # Use Redis adapter to run Action Cable in production
 # Install redis to your computer
