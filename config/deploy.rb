@@ -111,9 +111,9 @@ namespace :deploy do
   desc 'Remove devise routes because of migration error'
   task :fix_route_before_migrate do
     on roles(:app) do
-      within "#{release_path}/config" do
-        execute :cp, 'routes.rb', 'routes.rb.tmp'
-        execute :cp, 'routes.initial.rb', 'routes.rb'
+      within "#{release_path}/config/" do
+        execute :mv, 'routes.rb', 'routes.rb.tmp'
+        execute :mv, 'routes.initial.rb', 'routes.rb'
       end
     end
   end
@@ -129,7 +129,7 @@ namespace :deploy do
   task :db_seed do
     on roles(:db) do |_host|
       with rails_env: fetch(:rails_env) do
-        within current_path do
+        within release_path do
           execute :bundle, :exec, :rake, 'db:seed'
         end
       end
@@ -139,25 +139,15 @@ namespace :deploy do
   desc 'Repair devise routes'
   task :fix_route_after_migrate do
     on roles(:app) do
-      within "#{release_path}/config" do
+      within "#{release_path}/config/" do
         execute :cp, 'routes.rb.tmp', 'routes.rb'
         execute :rm, 'routes.rb.tmp'
       end
     end
   end
 
-  before :starting, :check_revision
-  before :check, 'setup:config'
-  after :check, :fix_route_before_migrate
-  after :migrate, :seed
-  after :finishing, :compile_assets
-  after :finishing, :cleanup
-  after :db_seed, :fix_route_after_migrate
-end
-
-namespace :setup do
   desc 'setup config'
-  task :config do
+  task :setup_config do
     on roles(:app) do |_host|
       linked_files.each do |f|
         upload! f.to_s, "#{shared_path}/#{f}"
@@ -165,15 +155,23 @@ namespace :setup do
     end
   end
 
-  # desc 'setup nginx'
-  # task :nginx do
-  #   on roles(:app) do |_host|
-  # 後ほど作成するnginxのファイル名を記述してください
-  # %w[perican3.conf].each do |f|
-  #   upload! "config/#{f}", "#{shared_path}/config/#{f}"
-  #   sudo :cp, "#{shared_path}/config/#{f}", "/etc/nginx/conf.d/#{f}"
-  #   sudo 'nginx -s reload'
-  # end
-  # end
-  # end
+  desc 'setup nginx'
+  task :nginx do
+    on roles(:app) do |_host|
+      # 後ほど作成するnginxのファイル名を記述してください
+      %w[R.conf].each do |f|
+        sudo :cp, "#{release_path}/nginx/#{f}", "/etc/nginx/conf.d/#{f}"
+        sudo 'systemctl reload nginx'
+      end
+    end
+  end
+
+  before :starting, :check_revision
+  before :check, :setup_config
+  after 'bundler:install', 'deploy:fix_route_before_migrate'
+  after :migrate, :fix_route_after_migrate
+  after :fix_route_after_migrate, :db_seed
+  before :finishing, :nginx
+  after :finishing, :compile_assets
+  after :finishing, :cleanup
 end

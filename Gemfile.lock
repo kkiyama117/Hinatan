@@ -99,12 +99,16 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
+    capistrano-nvm (0.0.7)
+      capistrano (~> 3.1)
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     capistrano-rbenv (2.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    capistrano-yarn (2.0.2)
+      capistrano (~> 3.0)
     capistrano3-puma (3.1.1)
       capistrano (~> 3.7)
       capistrano-bundler
@@ -462,8 +466,10 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   bulma-rails (~> 0.7.5)
   byebug
+  capistrano-nvm
   capistrano-rails
   capistrano-rbenv
+  capistrano-yarn
   capistrano3-puma
   capybara (>= 2.15)
   devise (>= 4.6.0)
