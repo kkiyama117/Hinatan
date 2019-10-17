@@ -122,13 +122,13 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  config.session_store :redis_store,
-                       key: '_api_session',
-                       servers: {
-                         host: 'localhost',
-                         port: '6379',
-                         db: '0',
-                         namespace: 'session'
-                       },
-                       expire_after: 60.minutes
+  # config.session_store :redis_store,
+  #                      key: '_api_session',
+  #                      servers: {
+  #                        host: 'localhost',
+  #                        port: '6379',
+  #                        db: '0',
+  #                        namespace: 'session'
+  #                      },
+  #                      expire_after: 60.minutes
 end
