@@ -39,4 +39,3 @@ require 'capistrano/puma'
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 # you do this at last
 install_plugin Capistrano::Puma
-install_plugin Capistrano::Puma::Nginx
