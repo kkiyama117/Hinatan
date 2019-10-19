@@ -41,8 +41,9 @@ ActiveRecord::Schema.define(version: 2019_10_17_145202) do
 
   create_table "places", force: :cascade do |t|
     t.string "name", null: false
-    t.decimal "latitude", precision: 9, scale: 6
-    t.decimal "longitude", precision: 9, scale: 6
+    t.string "postal_code", default: "606-8501", null: false
+    t.decimal "latitude", precision: 9, scale: 6, default: "35.026244", null: false
+    t.decimal "longitude", precision: 9, scale: 6, default: "135.778633", null: false
     t.string "address"
     t.integer "parent_id"
     t.datetime "created_at", precision: 6, null: false

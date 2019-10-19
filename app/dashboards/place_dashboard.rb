@@ -2,6 +2,7 @@
 
 require 'administrate/base_dashboard'
 
+# Place Admin manager
 class PlaceDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
@@ -10,13 +11,15 @@ class PlaceDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    children: Field::HasMany.with_options(class_name: 'Place', foreign_key: :parent_id),
     parent: Field::BelongsTo.with_options(class_name: 'Place', foreign_key: :parent_id),
-    children: Field::HasMany.with_options(class_name: 'Place',foreign_key: :parent_id),
     id: Field::Number,
     name: Field::String,
+    postal_code: Field::String,
     latitude: Field::String.with_options(searchable: false),
     longitude: Field::String.with_options(searchable: false),
     address: Field::String,
+    parent_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -28,7 +31,6 @@ class PlaceDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     parent
-    children
     id
     name
   ].freeze
@@ -40,6 +42,7 @@ class PlaceDashboard < Administrate::BaseDashboard
     children
     id
     name
+    postal_code
     latitude
     longitude
     address
@@ -53,6 +56,7 @@ class PlaceDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     parent
     name
+    postal_code
     latitude
     longitude
     address
@@ -73,7 +77,7 @@ class PlaceDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how places are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(place)
-  #   "Place ##{place.id}"
-  # end
+  def display_resource(place)
+    "Place @#{place.name}"
+  end
 end
