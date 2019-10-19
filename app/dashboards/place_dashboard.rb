@@ -10,14 +10,13 @@ class PlaceDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    parent: Field::BelongsTo.with_options(class_name: 'Place'),
-    children: Field::HasMany.with_options(class_name: 'Place'),
+    parent: Field::BelongsTo.with_options(class_name: 'Place', foreign_key: :parent_id),
+    children: Field::HasMany.with_options(class_name: 'Place',foreign_key: :parent_id),
     id: Field::Number,
     name: Field::String,
     latitude: Field::String.with_options(searchable: false),
     longitude: Field::String.with_options(searchable: false),
     address: Field::String,
-    place_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -44,7 +43,6 @@ class PlaceDashboard < Administrate::BaseDashboard
     latitude
     longitude
     address
-    place_id
     created_at
     updated_at
   ].freeze
@@ -54,12 +52,10 @@ class PlaceDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     parent
-    children
     name
     latitude
     longitude
     address
-    place_id
   ].freeze
 
   # COLLECTION_FILTERS
