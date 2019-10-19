@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :recipes
     resources :recipe_ingredients
     resources :ingredients
+    resources :places
 
     root to: 'users#index'
   end
