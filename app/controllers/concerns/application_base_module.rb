@@ -13,7 +13,7 @@ module ApplicationBaseModule
 
     # CSRF
     # default -> on
-    # protect_from_forgery with: :exception
+    protect_from_forgery prepend: true, with: :exception
   end
 
   def current_user
