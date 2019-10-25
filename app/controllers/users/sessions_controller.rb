@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# Only add Setting for XSS and CORS
 class Users::SessionsController < Devise::SessionsController
+  # protect_from_forgery except: [:callback]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

@@ -2,6 +2,7 @@
 
 # Controller for authentication
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  protect_from_forgery except: %i[facebook google]
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
