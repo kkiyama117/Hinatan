@@ -57,8 +57,16 @@ import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 // import App from '../app.vue'
 //
-Vue.use(TurbolinksAdapter)
+Vue.use(TurbolinksAdapter);
 //
+
+function handleVueDestruction(vue) {
+  document.addEventListener('turbolinks:visit', function teardown() {
+    vue.$destroy();
+    document.removeEventListener('turbolinks:visit', teardown);
+  });
+}
+
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
     el: '#hello',
@@ -67,6 +75,7 @@ document.addEventListener('turbolinks:load', () => {
         message: "Can you say hello?"
       }
     },
+    mixins: [TurbolinksAdapter],
     // components: { App }
   })
-})
+});
