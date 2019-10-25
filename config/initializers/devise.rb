@@ -262,7 +262,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, Rails.application.credentials.facebook[:app_id],
                   Rails.application.credentials.facebook[:app_secret],
-                  scope: 'email'
+                  scope: 'email', token_params: { parse: :json }
 
   config.omniauth :google_oauth2, Rails.application.credentials.google[:app_id],
                   Rails.application.credentials.google[:app_secret],

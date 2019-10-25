@@ -4,8 +4,8 @@
 class OmniauthParamsBuilder
   include Service
 
-  def initialize(model_name: nil, auth:)
-    @model = model_name
+  def initialize(model: nil, auth:)
+    @model = model.to_s.constantize
     @auth = auth
   end
 
@@ -13,7 +13,7 @@ class OmniauthParamsBuilder
     needed = column_needed_by_model @model
     data = get_data_with_auth(@auth)
     if needed.blank?
-      data
+      nil
     else
       get_hash_with_keys needed, data
     end
@@ -27,14 +27,12 @@ class OmniauthParamsBuilder
     result
   end
 
-  def column_needed_by_model(model_name)
-    if model_name == 'User'
+  def column_needed_by_model(model)
+    if model == User
       %i[first_name last_name email]
       # %i[name email password]
-    elsif model_name == 'OAuth'
+    elsif model == OAuth
       %i[provider uid token]
-    elsif model_name.blank?
-      nil
     else
       raise ValueError('error')
     end

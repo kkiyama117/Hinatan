@@ -12,14 +12,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    #   super
     super do |user|
-      devise_data = session['devise.user_attributes']
-      if devise_data.present?
-        auth_data = OmniauthParamsBuilder.new(model_name: 'OAuth',
-                                              auth: devise_data).run
-        user.o_auths.create(auth_data)
-      end
+      o_auth_data = session['devise.o_auth_attributes']
+      # TODO(kkiyama117): Use UserForm Class
+      user.o_auths << OAuth.new(o_auth_data) if o_auth_data.present?
       user
     end
   end
@@ -43,23 +39,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
   # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
+  # removing all OAuth session dataja..
   # def cancel
   #   super
   # end
 
   protected
 
-  # If you have extra params to permit, append them to the sanitizer.
+  def build_resource(hash = {})
+    self.resource = User.new_with_auth_session(hash, session)
+  end
+
+  # If you have extra params to permit, append them to the sanitizer.mail
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys:
-        [:first_name, :last_name, o_auths_attributes: %i[id provider uid token]])
+        [:first_name, :last_name, :email, o_auths_attributes: %i[id provider uid token]])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys:
-        [:first_name, :last_name, o_auths_attributes: [:_destroy]])
+        [:first_name, :last_name, :email, o_auths_attributes: [:_destroy]])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

@@ -16,8 +16,19 @@ module User::DeviseAndAuth
     accepts_nested_attributes_for :o_auths, allow_destroy: true, reject_if: :all_blank
 
     scope :with_auth, -> { joins(:o_auths) }
-    scope :find_by_auth, lambda { |auth|
+    scope :where_by_auth, lambda { |auth|
       with_auth.merge(OAuth.where(provider: auth.provider, uid: auth.uid))
     }
+  end
+
+  # Nodoc
+  module ClassMethods
+    # Used at #build_resource at #Devise::RegistrationsController
+    def new_with_auth_session(params, session)
+      model_name = name.downcase
+      session_model_data = session["devise.#{model_name}_attributes"]
+      # merge は重複時, 引数の方を優先する
+      new(session_model_data.merge(params))
+    end
   end
 end

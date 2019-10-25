@@ -40,45 +40,63 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # @return [Object]
   def base_action
+    # Oauth の仕様としてCallbackが帰る
     auth = request.env['omniauth.auth']
-    user = User.find_by_auth(auth).first
+    user = User.where_by_auth(auth).first
     if user_signed_in?
-      base_action_when_sign_in user, auth
-    elsif user.present?
-      # sign in as OAuth User
-      sign_in_and_redirect user, event: :authentication
-      if is_navigational_format?
-        set_flash_message(:notice, :success,
-                          kind: auth.provider)
+      if user.present?
+        signed_in_with_auth_action user: user, auth: auth
+      else
+        create_new_oauth_link auth: auth
       end
+    elsif user.present?
+      sign_in_with_auth(user: user, auth: auth)
     else
-      # Register new user with OAuth
-      session['devise.user_attributes'] = auth
-      redirect_to new_user_registration_path
+      redirect_to_register auth: auth
     end
   end
 
-  def base_action_when_sign_in(user, auth)
-    if user.present?
-      reason = if user == current_user
-                 '既にログインしています'
-               else
-                 'そのアカウントは別のUserによって登録されています'
-               end
-      if is_navigational_format?
-        set_flash_message(:notice, :failure, kind: auth.provider,
-                                             reason: reason)
-      end
-      redirect_to user_root_path
-    else
-      auth_data = OmniauthParamsBuilder.new(model_name: 'OAuth',
-                                            auth: auth).run
-      current_user.o_auths.create(auth_data)
-      if is_navigational_format?
-        set_flash_message(:notice, :success,
-                          kind: auth.provider)
-      end
-      redirect_to user_root_path
+  def signed_in_with_auth_action(user:, auth:)
+    reason = if user == current_user
+               t('devise.failure.already_authenticated')
+             else
+               t('errors.messages.already_confirmed')
+             end
+    if is_navigational_format?
+      set_flash_message(:notice, :failure, kind: auth.provider,
+                                           reason: reason)
     end
+    redirect_to user_root_path
+  end
+
+  def create_new_oauth_link(auth:)
+    auth_data = OmniauthParamsBuilder.new(model: 'OAuth',
+                                          auth: auth).run
+    current_user.o_auths.create(auth_data)
+    if is_navigational_format?
+      set_flash_message(:notice, :success,
+                        kind: auth.provider)
+    end
+    redirect_to user_root_path
+  end
+
+  def sign_in_with_auth(user:, auth:)
+    # sign in as OAuth User
+    if is_navigational_format?
+      set_flash_message(:notice, :success,
+                        kind: auth.provider)
+    end
+    sign_in_and_redirect user, event: :authentication
+  end
+
+  def redirect_to_register(auth:)
+    # Register new user with OAuth
+    user_data_from_auth = OmniauthParamsBuilder.new(model: User,
+                                                    auth: auth).run
+    session['devise.user_attributes'] = user_data_from_auth
+    auth_data = OmniauthParamsBuilder.new(model: 'OAuth',
+                                          auth: auth).run
+    session['devise.o_auth_attributes'] = auth_data
+    redirect_to new_user_registration_path
   end
 end
