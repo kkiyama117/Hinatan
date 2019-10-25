@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+# :nodoc:
 class Users::UnlocksController < Devise::UnlocksController
+  include ApplicationBaseModule
+
   # GET /resource/unlock/new
   # def new
   #   super

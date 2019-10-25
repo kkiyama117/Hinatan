@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# :nodoc:
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  include ApplicationBaseModule
   # GET /resource/confirmation/new
   # def new
   #   super

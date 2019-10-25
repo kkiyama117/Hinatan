@@ -12,7 +12,8 @@ module ApplicationBaseModule
     before_action :store_user_location!, if: :storable_location?
 
     # CSRF
-    protect_from_forgery with: :exception
+    # default -> on
+    # protect_from_forgery with: :exception
   end
 
   def current_user

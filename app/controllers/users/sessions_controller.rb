@@ -2,6 +2,8 @@
 
 # Only add Setting for XSS and CORS
 class Users::SessionsController < Devise::SessionsController
+  include ApplicationBaseModule
+
   # protect_from_forgery except: [:callback]
   # before_action :configure_sign_in_params, only: [:create]
 

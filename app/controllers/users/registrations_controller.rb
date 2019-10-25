@@ -2,6 +2,8 @@
 
 # User Registration (User model create, update and delete)
 class Users::RegistrationsController < Devise::RegistrationsController
+  include ApplicationBaseModule
+
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 

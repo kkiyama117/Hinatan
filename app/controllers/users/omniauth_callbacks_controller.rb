@@ -2,7 +2,9 @@
 
 # Controller for authentication
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  protect_from_forgery except: %i[facebook google]
+  include ApplicationBaseModule
+
+  protect_from_forgery except: %i[facebook google passthru]
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
@@ -10,6 +12,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def twitter
   # end
   def facebook
+    if request.env['omniauth.auth'].info.email.blank?
+      redirect_to '/users/auth/facebook?auth_type=rerequest&scope=email'
+      return # be sure to include an return if there is code after this otherwise it will be executed
+    end
     base_action
   end
 
