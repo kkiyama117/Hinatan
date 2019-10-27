@@ -9,9 +9,9 @@
 module Admin
   # Controller for all administrate
   class ApplicationController < Administrate::ApplicationController
-    before_action :authenticate_user!
-
     include ApplicationBaseModule
+
+    before_action :authenticate_user!
 
     # def authenticate_admin
     # TODO: Add authentication logic here.

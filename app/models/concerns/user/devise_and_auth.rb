@@ -28,7 +28,11 @@ module User::DeviseAndAuth
       model_name = name.downcase
       session_model_data = session["devise.#{model_name}_attributes"]
       # merge は重複時, 引数の方を優先する
-      new(session_model_data.merge(params))
+      if session_model_data.present?
+        new(session_model_data.merge(params))
+      else
+        new(params)
+      end
     end
   end
 end

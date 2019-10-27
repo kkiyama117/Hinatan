@@ -5,10 +5,10 @@ require 'application_responder'
 
 # Base Controller
 class ApplicationController < ActionController::Base
+  # base for all Controllers in this app
+  include ApplicationBaseModule
+
   # responders (flash cache etc)
   self.responder = ApplicationResponder
   respond_to :html
-
-  # base for all Controllers in this app
-  include ApplicationBaseModule
 end

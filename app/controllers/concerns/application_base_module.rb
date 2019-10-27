@@ -9,6 +9,7 @@ module ApplicationBaseModule
   include MobileCheck
 
   included do
+    skip_before_action :verify_authenticity_token
     before_action :store_user_location!, if: :storable_location?
 
     # CSRF
