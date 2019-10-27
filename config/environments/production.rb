@@ -49,6 +49,9 @@ Rails.application.configure do
   config.force_ssl = true
   # Exclude when accessed by ELS
   config.ssl_options = { redirect: { exclude: proc { |env| !env['HTTP_X_FORWARDED_FOR'] } } }
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
 
   Rails.application.config.middleware.use OmniAuth::Builder do
     configure do |config|
