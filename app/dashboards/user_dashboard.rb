@@ -51,7 +51,6 @@ class UserDashboard < Administrate::BaseDashboard
     first_name
     last_name
     email
-    encrypted_password
     reset_password_token
     reset_password_sent_at
     remember_created_at
@@ -73,11 +72,8 @@ class UserDashboard < Administrate::BaseDashboard
     first_name
     last_name
     email
-    encrypted_password
-    reset_password_token
     reset_password_sent_at
     remember_created_at
-    confirmation_token
     confirmed_at
     confirmation_sent_at
     unconfirmed_email
@@ -98,7 +94,7 @@ class UserDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
-  # end
+  def display_resource(user)
+    user.email.to_s
+  end
 end
