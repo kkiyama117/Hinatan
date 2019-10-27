@@ -11,6 +11,8 @@ module ApplicationBaseModule
   included do
     skip_before_action :verify_authenticity_token
     before_action :store_user_location!, if: :storable_location?
+    # after_action :verify_authorized, except: :index
+    # after_action :verify_policy_scoped, only: :index
 
     # CSRF
     # default -> on

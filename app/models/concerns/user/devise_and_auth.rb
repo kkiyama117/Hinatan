@@ -21,7 +21,7 @@ module User::DeviseAndAuth
     }
   end
 
-  # Nodoc
+  # :nodoc:
   module ClassMethods
     # Used at #build_resource at #Devise::RegistrationsController to create model from session
     def new_with_auth_session(params, session)
