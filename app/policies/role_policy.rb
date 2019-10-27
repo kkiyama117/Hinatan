@@ -9,7 +9,9 @@ class RolePolicy < ApplicationPolicy
     end
 
     def resolve_admin
-      scope.all if user.master?
+      return scope.all if user.master?
+
+      scope.where('id<0')
     end
   end
 end

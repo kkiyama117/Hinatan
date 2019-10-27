@@ -59,6 +59,8 @@ class ApplicationPolicy
         scope.all
       elsif @user.admin?
         scope.all
+      else
+        scope.where('id<0')
       end
     end
   end
@@ -67,6 +69,6 @@ class ApplicationPolicy
 
   def can?(ability: nil)
     User.with_abilities.merge(Ability.where(name: "#{@record.class.to_s.upcase}_#{ability}")).present? ||
-        @user.master? || @user.admin?
+      @user.master? || @user.admin?
   end
 end
