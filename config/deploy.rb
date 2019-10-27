@@ -104,6 +104,7 @@ namespace :deploy do
       execute 'chmod 701 /home/ec2-user'
 
       before 'deploy:restart', 'puma:start'
+      after :fix_route_after_migrate, :db_seed
       invoke 'deploy'
     end
   end
@@ -170,7 +171,6 @@ namespace :deploy do
   before :check, :setup_config
   after 'bundler:install', 'deploy:fix_route_before_migrate'
   after :migrate, :fix_route_after_migrate
-  after :fix_route_after_migrate, :db_seed
   before :finishing, :nginx
   after :finishing, :compile_assets
   after :finishing, :cleanup
