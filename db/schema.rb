@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_145202) do
+ActiveRecord::Schema.define(version: 2019_10_27_102548) do
 
   create_table "abilities", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,15 @@ ActiveRecord::Schema.define(version: 2019_10_17_145202) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "role_abilities", force: :cascade do |t|
+    t.integer "role_id", null: false
+    t.integer "ability_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ability_id"], name: "index_role_abilities_on_ability_id"
+    t.index ["role_id"], name: "index_role_abilities_on_role_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -107,6 +116,8 @@ ActiveRecord::Schema.define(version: 2019_10_17_145202) do
   add_foreign_key "places", "places", column: "parent_id"
   add_foreign_key "recipe_ingredients", "ingredients"
   add_foreign_key "recipe_ingredients", "recipes"
+  add_foreign_key "role_abilities", "abilities"
+  add_foreign_key "role_abilities", "roles"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end

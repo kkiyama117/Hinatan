@@ -9,12 +9,14 @@
 module Admin
   # Controller for all administrate
   class ApplicationController < Administrate::ApplicationController
+    # #current_user method is decorated in this module.
     include ApplicationBaseModule
-
+    # Integrate Administrate and Pundit
+    include Administrate::Punditize
+    # Integrate Administrate and Devise
     before_action :authenticate_user!
 
     # def authenticate_admin
-    # TODO: Add authentication logic here.
     # end
 
     # Override this value to specify the number of elements to display at a time

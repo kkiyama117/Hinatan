@@ -4,6 +4,7 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
+  # #current_user is inserted into @user
   def initialize(user, record)
     @user = user
     @record = record
@@ -49,5 +50,18 @@ class ApplicationPolicy
     def resolve
       scope.all
     end
+
+    # #Admin::ApplicationController
+    # https://administrate-prototype.herokuapp.com/authorization
+    def resolve_admin
+      # scope.where(owner: user) || @user.master?
+      @user.master?
+    end
+  end
+
+  private
+
+  def can?(_ability)
+    (@user.abilities.include?(@record).class.to_s.underscore && user.abilities) || @user.master?
   end
 end
