@@ -8,13 +8,20 @@ module User::RoleAndAbility
     # Roles
     has_many :user_roles, dependent: :destroy
     has_many :roles, through: :user_roles
-    scope :masters, -> { joins(child: [roles: :abilities]).merge(Ability.find_by(name: 'MASTER')) }
-  end
-  # check master, admin or not
-  def master?
-    User.masters.ids.include? id
+    scope :with_roles, -> { joins(:roles) }
+    # Scope for abilities
+    scope :with_abilities, -> { joins(roles: :abilities) }
+    scope :masters, -> { with_abilities.merge(Ability.where(name: 'MASTER')) }
+    scope :admins, -> { with_abilities.merge(Ability.where(name: 'ACCESS_ADMIN')) }
   end
 
-  # get abilities
-  def abilities; end
+  # check master, admin or not
+  def master?
+    User.masters.try(:ids).try(:include?, id)
+  end
+
+  # check access ability
+  def admin?
+    User.admins.try(:ids).try(:include?, id) || master?
+  end
 end

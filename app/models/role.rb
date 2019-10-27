@@ -10,6 +10,4 @@ class Role < ApplicationRecord
   # #Ability
   has_many :role_ability, dependent: :destroy
   has_many :abilities, through: :role_ability
-
-  scope :with_abilities, -> { joins(:abilities) }
 end
