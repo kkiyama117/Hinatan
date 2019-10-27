@@ -4,21 +4,22 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
+  # #current_user is inserted into @user
   def initialize(user, record)
     @user = user
     @record = record
   end
 
   def index?
-    false
+    can?
   end
 
   def show?
-    false
+    can?
   end
 
   def create?
-    false
+    can?
   end
 
   def new?
@@ -26,7 +27,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    can?
   end
 
   def edit?
@@ -34,7 +35,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    can?
   end
 
   # Scope
@@ -49,5 +50,23 @@ class ApplicationPolicy
     def resolve
       scope.all
     end
+
+    # #Admin::ApplicationController
+    # https://administrate-prototype.herokuapp.com/authorization
+    def resolve_admin
+      # scope.where(owner: user)
+      if @user.master?
+        scope.all
+      elsif @user.admin?
+        scope.all
+      end
+    end
+  end
+
+  private
+
+  def can?(ability: nil)
+    User.with_abilities.merge(Ability.where(name: "#{@record.class.to_s.upcase}_#{ability}")).present? ||
+        @user.master? || @user.admin?
   end
 end

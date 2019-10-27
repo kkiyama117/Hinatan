@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class IngredientPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   # :nodoc:
   class Scope < Scope
     def resolve

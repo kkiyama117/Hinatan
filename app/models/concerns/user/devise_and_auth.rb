@@ -23,7 +23,7 @@ module User::DeviseAndAuth
 
   # Nodoc
   module ClassMethods
-    # Used at #build_resource at #Devise::RegistrationsController
+    # Used at #build_resource at #Devise::RegistrationsController to create model from session
     def new_with_auth_session(params, session)
       model_name = name.downcase
       session_model_data = session["devise.#{model_name}_attributes"]

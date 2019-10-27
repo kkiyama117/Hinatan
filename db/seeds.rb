@@ -7,15 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # frozen_string_literal: true
+master_ability=Ability.create(name: 'MASTER')
+admin_ability=Ability.create(name: 'ACCESS_ADMIN')
+
 Role.create(
-        name: 'ADMIN'
+        name: 'ADMIN',
+        abilities: [admin_ability]
 )
+
 master_role=Role.create(
-    name: 'MASTER'
+    name: 'MASTER',
+    abilities: [master_ability]
 )
-Role.create(
-    name: 'NORMAL'
-)
+
+
 User.create(
     email: '61st.kitchen@gmail.com',
     password: Rails.application.credentials.appmaster[:password],
