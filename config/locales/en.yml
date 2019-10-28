@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  pundit:
+    failures:
+      action_not_allowed: 'You are not authorized to perform this action.'

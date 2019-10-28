@@ -31,3 +31,6 @@
 
 ja:
   hello: "おはよう日本"
+  pundit:
+    failures:
+      action_not_allowed: 'あなたのアカウントではその動作の権限は認可されていません'

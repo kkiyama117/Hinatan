@@ -17,6 +17,9 @@ module ApplicationBaseModule
     # CSRF
     # default -> on
     protect_from_forgery prepend: true, with: :exception
+
+    # Rescue from Pundit error
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   end
 
   def current_user
@@ -24,6 +27,12 @@ module ApplicationBaseModule
   end
 
   private
+
+  # Catch Pundit exception and redirect
+  def user_not_authorized
+    flash[:alert] = t('pundit.failures.action_not_allowed')
+    redirect_to(request.referrer || root_path)
+  end
 
   # devise methods
   def storable_location?
