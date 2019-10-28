@@ -6,12 +6,12 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-v2.6.3
+v2.6.5
 
 * System dependencies
-redis
-sqlite
-ruby and bundle
+- redis
+- sqlite -> dev
+- ruby and bundle
 
 * Configuration
 ## Install
