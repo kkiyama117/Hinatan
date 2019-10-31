@@ -2,7 +2,9 @@
 
 # User Base Model
 class User < ApplicationRecord
+  # Authentication
   include User::DeviseAndAuth
+  # Authorization
   include User::RoleAndAbility
 
   # name validates

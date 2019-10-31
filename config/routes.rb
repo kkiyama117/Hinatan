@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :admin do
-    resources :users
+    resource :users
     resources :user_roles
     resources :o_auths
     resources :abilities
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   }
 
   # user root
-  get 'users', action: :show, controller: :users, as: :user_root
+  resource :user, only: %i[show edit]
   root 'welcome#index'
 
   # about recipes

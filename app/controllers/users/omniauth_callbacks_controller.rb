@@ -73,7 +73,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :failure, kind: auth.provider,
                                            reason: reason)
     end
-    redirect_to user_root_path
+    redirect_to user_path
   end
 
   def create_new_oauth_link(auth:)
@@ -84,7 +84,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success,
                         kind: auth.provider)
     end
-    redirect_to user_root_path
+    redirect_to user_path
   end
 
   def sign_in_with_auth(user:, auth:)
