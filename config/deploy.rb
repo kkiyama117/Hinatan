@@ -4,7 +4,7 @@
 lock '~> 3.11.2'
 
 set :application, 'R'
-set :repo_url, 'git@github.com:kkiyama117/R.git'
+set :repo_url, 'git@github.com:kkiyama117/Hinatan.git'
 set :user, 'ec2-user'
 
 # Default branch is :master
