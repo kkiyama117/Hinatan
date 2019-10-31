@@ -4,16 +4,29 @@
       <i class="fas fa-home"></i> HOME
     <% end %>
   </li>
-  <li class="is-right">
-    <%= link_to user_path, class: 'is-active' do %>
-      <i class="fas fa-user"></i> <%= current_user_or_model_name %>
-    <% end %>
-  </li>
-  <li>
-    <%= sign_in_or_out_tag class: 'is-active' do %>
-      <i class="<%= sign_in_or_out_icon_string %>"></i> <%= sign_in_or_out_tag_string %>
-    <% end %>
-  </li>
+  <% if current_user.present? %>
+    <li class="is-right">
+      <%= link_to user_path, class: 'is-active' do %>
+        <i class="fas fa-user"></i> <%= current_user_name %> の設定
+      <% end %>
+    </li>
+    <li>
+      <%= link_to destroy_session_path(User), method: :delete, class: 'is-active' do %>
+        <i class="fas fa-sign-out-alt"></i> <%= I18n.t('devise.shared.links.sign_out') %>
+      <% end %>
+    </li>
+  <% else %>
+    <li class="is-right">
+      <%= link_to new_user_registration_path, class: 'is-active' do %>
+        <i class="fas fa-user"></i> <%= I18n.t('devise.shared.links.sign_up') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_session_path(User), class: 'is-active' do %>
+        <i class="fas fa-sign-in-alt"></i> <%= I18n.t('devise.shared.links.sign_in') %>
+      <% end %>
+    </li>
+  <% end %>
   <li>
     <%= link_to admin_root_path, class: 'is-active' do %>
       <i class="fas fa-tools"></i> ADMIN

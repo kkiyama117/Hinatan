@@ -3,6 +3,7 @@
 # User devise
 module User::DeviseAndAuth
   extend ActiveSupport::Concern
+  include Devise::Models::Registerable
   included do
     # Include default devise modules. Others available are:
     # :lockable, :timeoutable, :trackable and :omniauthable
@@ -24,7 +25,7 @@ module User::DeviseAndAuth
   # :nodoc:
   module ClassMethods
     # Used at #build_resource at #Devise::RegistrationsController to create model from session
-    def new_with_auth_session(params, session)
+    def new_with_session(params, session)
       model_name = name.downcase
       session_model_data = session["devise.#{model_name}_attributes"]
       # merge は重複時, 引数の方を優先する

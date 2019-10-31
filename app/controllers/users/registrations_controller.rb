@@ -8,15 +8,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
   def create
     super do |user|
       o_auth_data = session['devise.o_auth_attributes']
-      # TODO(kkiyama117): Use UserForm Class
+      # TODO(kkiyama117): Use UserForm Class?
       user.o_auths << OAuth.new(o_auth_data) if o_auth_data.present?
       user
     end
@@ -47,10 +47,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
-
-  def build_resource(hash = {})
-    self.resource = User.new_with_auth_session(hash, session)
-  end
 
   # If you have extra params to permit, append them to the sanitizer.mail
   def configure_sign_up_params

@@ -3,8 +3,10 @@
 # User Base Model
 class User < ApplicationRecord
   # Authentication
+  # Devise, #OAuth model
   include User::DeviseAndAuth
   # Authorization
+  # Pundit, #Role and #Ability model
   include User::RoleAndAbility
 
   # name validates
