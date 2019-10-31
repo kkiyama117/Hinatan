@@ -133,7 +133,7 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  # config.session_store :redis_store,
+  # config.session_store :redis_st://re,
   #                      key: '_api_session',
   #                      servers: {
   #                        host: 'localhost',
