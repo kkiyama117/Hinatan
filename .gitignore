@@ -85,3 +85,4 @@ yarn-debug.log*
 
 /config/master.key
 /config/deploy/production.rb
+/config/deploy/home.rb

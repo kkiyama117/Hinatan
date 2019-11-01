@@ -160,10 +160,11 @@ namespace :deploy do
   task :nginx do
     on roles(:app) do |_host|
       # 後ほど作成するnginxのファイル名を記述してください
-      %w[R.conf].each do |f|
-        sudo :cp, "#{release_path}/nginx/#{f}", "/etc/nginx/conf.d/#{f}"
-        sudo 'systemctl reload nginx'
-      end
+      # %w[AWS.conf].each do |f|
+      # sudo :cp, "#{release_path}/nginx/#{f}", "/etc/nginx/conf.d/#{f}"
+      # sudo 'systemctl reload nginx'
+      # end
+      sudo 'systemctl reload nginx'
     end
   end
 
