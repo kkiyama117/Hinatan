@@ -3,7 +3,7 @@
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.11.2'
 
-set :application, 'R'
+set :application, 'Hinatan'
 set :repo_url, 'git@github.com:kkiyama117/Hinatan.git'
 set :user, 'ec2-user'
 
@@ -12,7 +12,7 @@ set :user, 'ec2-user'
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
-set :deploy_to, '/home/ec2-user/R'
+set :deploy_to, '/home/ec2-user/Hinatan'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh

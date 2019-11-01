@@ -1,5 +1,5 @@
 {
-  "name": "r",
+  "name": "hinatan",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0-alpha",
